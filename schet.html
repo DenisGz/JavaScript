@@ -1,0 +1,84 @@
+﻿<meta charset="utf-8"> 
+<script> 
+var i = 0;
+var sum = 0;
+var sumb = 0;
+var bic = [];
+var schet = [];
+
+function StrToMas(st) //Функция преобразования строки в массив
+	{
+	var arr=[];
+	for (j = 0; j<st.length; j++)
+	{
+	arr.push(st.charAt(j));
+	}
+return arr;}
+
+
+var a = prompt("Введите БИК Банка: "); //Ввод БИКа и проверка длинны БИКа
+
+if (!(a.length==9)) {
+	do {
+		var a = prompt('Ошибка в длинне БИКа. Повторите ввод БИКа: ')
+		}
+	while (!(a.length==9));
+}
+bic = StrToMas(a);
+alert(bic);
+
+	
+
+var c = prompt("Введите счет получателя: "); //Ввод счета и проверка длинны счета
+
+if (!(c.length==20)) {
+	do {
+		var c = prompt('Ошибка в длинне счета. Повторите ввод счета: ')
+		}
+	while (!(c.length==20));
+}
+schet = StrToMas(c);
+alert(schet);
+	
+
+
+//Заполнение массивов для проверки. ves - весовые коэфиценты. contr - массив из элементов БИКа и счета
+var ves =   [7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1];
+var contr = [bic[6], bic[7], bic[8], schet[0], schet[1], schet[2], schet[3], schet[4], schet[5], schet[6], schet[7], schet[8], schet[9], schet[10], schet[11], schet[12], schet[13], schet[14], 
+schet[15], schet[16], schet[17], schet[18], schet[19]];
+
+var contrBank = [0, bic[4], bic[5], schet[0], schet[1], schet[2], schet[3], schet[4], schet[5], schet[6], schet[7], schet[8], schet[9], schet[10], schet[11], schet[12], schet[13], schet[14], 
+schet[15], schet[16], schet[17], schet[18], schet[19]];
+
+
+//Процедура проверки счета
+for (i = 0; i<=22; i++ ) {
+		sum=sum+contr[i]*ves[i];
+
+}
+alert (sum);
+var b = sum % 10;
+
+if (b==0){
+alert('Все хорошо!!!');
+}
+else {
+alert("Все плохо, возможно вы ввели корр счет банка. Сейчас увидим :-(");
+}
+
+//Процедура проверки счета Банка
+for (i = 0; i<=22; i++ ) {
+		sumb=sumb+contrBank[i]*ves[i];
+
+}
+alert (sumb);
+var g = sumb % 10;
+
+if (g==0){
+alert('Все хорошо!!! Да, действительно вы ввели корр счет банка');
+}
+else {
+alert("Все плохо, наверное вы ввели расчетный счет и вас уже было все хорошо :-(");
+}
+
+</script>

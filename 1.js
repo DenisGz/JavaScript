@@ -1,0 +1,37 @@
+function getMaxSubSum(arr) {
+  var maxSum = 0; // если совсем не брать элементов, то сумма 0
+
+  for (var i = 0; i < arr.length; i++) {
+    var sumFixedStart = 0;
+    for (var j = i; j < arr.length; j++) {
+      sumFixedStart += arr[j];
+      maxSum = Math.max(maxSum, sumFixedStart);
+    }
+  }
+
+  return maxSum;
+}
+
+alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
+alert( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
+alert( getMaxSubSum([-2, -1, 1, 2]) ); // 3
+alert( getMaxSubSum([1, 2, 3]) ); // 6
+alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
+
+function getMaxSubSum(arr) {
+  var maxSum = 0,
+    partialSum = 0;
+  for (var i = 0; i < arr.length; i++) {
+    partialSum += arr[i];
+    maxSum = Math.max(maxSum, partialSum);
+    if (partialSum < 0) partialSum = 0;
+  }
+  return maxSum;
+}
+
+alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
+alert( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
+alert( getMaxSubSum([-2, -1, 1, 2]) ); // 3
+alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
+alert( getMaxSubSum([1, 2, 3]) ); // 6
+alert( getMaxSubSum([-1, -2, -3]) ); // 0
