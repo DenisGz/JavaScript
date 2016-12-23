@@ -1,8 +1,8 @@
 var bak = 53;
-var bakOst=[62.5*0.53,62*0.53,50*0.53,48*0.53,37.5*0.53];
+var bakOst=[62.5*0.53,62*0.53,50*0.53,48*0.53,37.5*0.53,17*0.53,1*0.53];
 var info = [];
 //bakOst[0]= prompt('Сколько бензина в баке, %?', 62);
-var probeg = [17644,17651,17680,17700,17765];
+var probeg = [17644,17651,17680,17700,17765,17835,17955];
 //probeg[0] = prompt('Пробег сейчас, км?', 17651);
 function Trip(gazolineRate, distance, gazoline) {
 	this.rate = (gazolineRate/distance)*100;
@@ -13,8 +13,11 @@ function Trip(gazolineRate, distance, gazoline) {
 for (i=0; i<(bakOst.length - 1); i++) {
 	var a = new Trip((bakOst[i] - bakOst[i+1]), (probeg[i+1] - probeg[i]), bakOst[i+1]);
 	a.rateAll = (bakOst[0] - bakOst[i+1])*100/(probeg[i+1] - probeg[0]);
+	a.futureTripAll = bakOst[i+1]*100/a.rateAll;
 	info.push(a)
 }
+
+//подумать как реализовать заправку
 var b = info[3];
 var c = info[2];
 var d = info[0];
